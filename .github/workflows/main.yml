@@ -1,20 +1,22 @@
-name: Automatic build
+name: CI
+
 on:
   push:
     branches: ["main"]
   pull_request:
-    breanches: ["main"]
-  # Allow run workflow manually from Action tab in Github repo's page
+    branches: ["main"]
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
   build:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Node environment
+
+      - name: Setup Node.js environment
         uses: actions/setup-node@v3.4.1
-      - name: Install project's dependencies
-        run: npm install
-      - name: Build client
-        run: npm run build --prefix client
+
+      - run: npm install
+      - run: npm run build --prefix client
