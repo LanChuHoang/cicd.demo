@@ -1,11 +1,13 @@
 const request = require("supertest");
 const app = require("../../app");
 const { connectMongo, disconnectMongo } = require("../../services/mongo");
+const { loadPlanetsData } = require("../../models/planets.model");
 require("dotenv").config();
 
 describe("Lauches API Test", () => {
   beforeAll(async () => {
     await connectMongo();
+    await loadPlanetsData();
   });
 
   afterAll(async () => {
